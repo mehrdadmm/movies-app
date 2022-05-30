@@ -2,9 +2,6 @@ FROM node:10.15.1
 RUN npm install express
 WORKDIR /app
 COPY ./frontend .
-#RUN cd frontend
-#COPY package.json .
 RUN yarn install --production
-#COPY . ./
 ENTRYPOINT ["yarn", "start"]
 EXPOSE 3001
