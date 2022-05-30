@@ -1,0 +1,22 @@
+version: '3'
+services:
+    mongodb:
+        image: mongo:5.0
+        container_name: mongodb
+        ports:
+          - 27017:27017
+        volumes:
+          - ~/apps/mongo:/data/db
+        environment:
+          - MONGO_INITDB_ROOT_USERNAME=mehrdad
+          - MONGO_INITDB_ROOT_PASSWORD=m12345
+    backend:
+        build: ./backend
+        image: backend:latest
+        ports:
+            - "3000:3000"        
+    frontend:
+        build: ./frontend
+        image: frontend:latest
+        ports:
+            - "3001:3001"        
