@@ -1,6 +1,10 @@
 # Movies-app
 
-This sample is about your DevOps challenge2.
+This sample is just a DevOps challenge to come up with a Dockerized version of the Frontend/Backend of an application.
+
+## GOALS
+	- Frontend/Backend hosted in **docker** containers
+	- Include a **docker-compose** file
 
 It Contains:
 
