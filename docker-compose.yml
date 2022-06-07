@@ -2,21 +2,26 @@ version: '3'
 services:
     mongodb:
         image: mongo:5.0
-        container_name: mongodb
         ports:
           - 27017:27017
         volumes:
-          - ~/apps/mongo:/data/db
+          - ./database:/data/db
         environment:
-          - MONGO_INITDB_ROOT_USERNAME=mehrdad
-          - MONGO_INITDB_ROOT_PASSWORD=m12345
+          - MONGODB_CONNECTION_STRING=mongodb://mehrdad:m123456@mongodb
     backend:
         build: ./backend
         image: backend:latest
+        environment:
+          - MONGO_ROOT_USERNAME=mehrdad
+          - MONGO_ROOT_PASSWORD=m12345  
         ports:
-            - "3000:3000"        
+          - "3000:3000"
+        links:
+          - mongodb:27017
+        restart: on-failure
+
     frontend:
         build: ./frontend
         image: frontend:latest
         ports:
-            - "3001:3001"        
+          - "8000:8000"
